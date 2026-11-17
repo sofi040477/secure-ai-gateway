@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "default_action": "ALLOW",
+  "on_error": "BLOCK",
+  "limits": {
+    "max_prompt_chars": 4000,
+    "max_external_chars": 20000,
+    "rate_limit_requests": 10,
+    "rate_limit_window_s": 60
+  },
+  "thresholds": {
+    "direct_block_score": 70,
+    "direct_review_score": 30,
+    "indirect_block_score": 60,
+    "indirect_review_score": 30
+  },
+  "dlp": {
+    "review_on_input": ["api_key", "credit_card", "password_assignment"]
+  },
+  "sensitive_actions": {
+    "review": true,
+    "keywords": ["borra", "elimina", "delete", "drop table", "transfiere", "transferir",
+                 "transfer", "ejecuta", "execute", "rm -rf", "formatea", "envia un correo", "send email"]
+  },
+  "correlation": {
+    "window_s": 300,
+    "block_threshold": 3,
+    "lockout_s": 300,
+    "ip_distinct_users": 3
+  }
+}
